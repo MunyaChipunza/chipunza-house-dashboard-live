@@ -1,0 +1,3 @@
+__pycache__/
+*.pyc
+scripts/local_autopublish.log

@@ -1,0 +1,930 @@
+{
+  "title": "Chipunza House Project Dashboard",
+  "subtitle": "Live status board for scope, programme, budget, and decisions",
+  "sourceName": "Chipunza_Project_Control_Live.xlsx",
+  "generatedAt": "2026-04-06T09:55:24.334383+02:00",
+  "sourceModifiedAt": "2026-04-06T09:12:22.524055+02:00",
+  "refreshSeconds": 60,
+  "summaryCards": [
+    {
+      "label": "Site Start",
+      "value": "01 May 2026",
+      "detail": "Formal site mobilisation",
+      "tone": "info"
+    },
+    {
+      "label": "Planned Finish",
+      "value": "12 Aug 2026",
+      "detail": "Current programme target",
+      "tone": "warn"
+    },
+    {
+      "label": "Overall Progress",
+      "value": "2%",
+      "detail": "Average task completion",
+      "tone": "bad"
+    },
+    {
+      "label": "In Progress",
+      "value": "2",
+      "detail": "Active work items",
+      "tone": "info"
+    },
+    {
+      "label": "Blocked Tasks",
+      "value": "1",
+      "detail": "Immediate constraints",
+      "tone": "bad"
+    },
+    {
+      "label": "Open Decisions",
+      "value": "7",
+      "detail": "Still awaiting closure",
+      "tone": "bad"
+    },
+    {
+      "label": "Known Quoted Value",
+      "value": "USD 24,259",
+      "detail": "Quotes captured in register",
+      "tone": "warn"
+    },
+    {
+      "label": "Next Milestone",
+      "value": "Scope freeze complete",
+      "detail": "17 Apr 2026",
+      "tone": "info"
+    }
+  ],
+  "phaseProgress": [
+    {
+      "phase": "Pre-Start",
+      "progress": 0.06818181818181818,
+      "completed": 0,
+      "total": 11,
+      "blocked": 0,
+      "tone": "bad"
+    },
+    {
+      "phase": "Mobilisation",
+      "progress": 0.0,
+      "completed": 0,
+      "total": 1,
+      "blocked": 0,
+      "tone": "bad"
+    },
+    {
+      "phase": "Builder and Envelope",
+      "progress": 0.0,
+      "completed": 0,
+      "total": 3,
+      "blocked": 0,
+      "tone": "bad"
+    },
+    {
+      "phase": "MEP and Ceilings",
+      "progress": 0.0,
+      "completed": 0,
+      "total": 7,
+      "blocked": 0,
+      "tone": "bad"
+    },
+    {
+      "phase": "Finishes and Fit-Out",
+      "progress": 0.0,
+      "completed": 0,
+      "total": 10,
+      "blocked": 1,
+      "tone": "bad"
+    },
+    {
+      "phase": "Closeout",
+      "progress": 0.0,
+      "completed": 0,
+      "total": 4,
+      "blocked": 0,
+      "tone": "bad"
+    }
+  ],
+  "milestones": [
+    {
+      "label": "Scope freeze complete",
+      "date": "2026-04-17",
+      "status": "Not Started",
+      "owner": "Munya + Dory",
+      "notes": "Latest scope locked"
+    },
+    {
+      "label": "Contracts signed",
+      "date": "2026-04-25",
+      "status": "Not Started",
+      "owner": "Munya + Dory",
+      "notes": "Commercial gate"
+    },
+    {
+      "label": "Mobilisation paid",
+      "date": "2026-04-29",
+      "status": "Not Started",
+      "owner": "Dory",
+      "notes": "Payment gate"
+    },
+    {
+      "label": "Formal site start",
+      "date": "2026-05-01",
+      "status": "Not Started",
+      "owner": "Del + Lead Contractor",
+      "notes": "Set to 1 May 2026"
+    },
+    {
+      "label": "Shell weather-tight",
+      "date": "2026-06-06",
+      "status": "Not Started",
+      "owner": "Del + Specialist Contractor",
+      "notes": "Windows, glazing, and external doors"
+    },
+    {
+      "label": "Ceilings complete",
+      "date": "2026-06-16",
+      "status": "Not Started",
+      "owner": "Del + Ceiling Team",
+      "notes": "Ready for decoration"
+    },
+    {
+      "label": "Finishes substantially complete",
+      "date": "2026-07-25",
+      "status": "Not Started",
+      "owner": "Del + Joinery Supplier + Munya",
+      "notes": "Kitchen and services closeout"
+    },
+    {
+      "label": "Owner handover",
+      "date": "2026-08-12",
+      "status": "Not Started",
+      "owner": "Munya + Dory + Del",
+      "notes": "Target handover milestone"
+    }
+  ],
+  "upcomingTasks": [
+    {
+      "id": "P0-01",
+      "phase": "Pre-Start",
+      "task": "Review current-state media and compile condition register",
+      "owner": "Munya + Codex",
+      "start": "2026-04-06",
+      "finish": "2026-04-08",
+      "status": "In Progress",
+      "progress": 0.45,
+      "critical": true,
+      "notes": "Desktop review and planning basis before live site confirmation."
+    },
+    {
+      "id": "P0-02",
+      "phase": "Pre-Start",
+      "task": "Del to run live site audit against Hatitye drawings and current shell",
+      "owner": "Del + Munya",
+      "start": "2026-04-09",
+      "finish": "2026-04-13",
+      "status": "Not Started",
+      "progress": 0.0,
+      "critical": true,
+      "notes": "Del leads on-site because Munya is in South Africa."
+    },
+    {
+      "id": "P0-05",
+      "phase": "Pre-Start",
+      "task": "Consolidate trade budget baseline and quote register",
+      "owner": "Munya + Codex",
+      "start": "2026-04-10",
+      "finish": "2026-04-18",
+      "status": "In Progress",
+      "progress": 0.3,
+      "critical": true,
+      "notes": "Known quotes captured; electrical, joinery, aluminium, and finishes still need closure."
+    },
+    {
+      "id": "P0-03",
+      "phase": "Pre-Start",
+      "task": "Freeze remaining-works scope and variation list",
+      "owner": "Munya + Dory",
+      "start": "2026-04-14",
+      "finish": "2026-04-17",
+      "status": "Not Started",
+      "progress": 0.0,
+      "critical": true,
+      "notes": "Convert latest design and actual built condition into contractable scope."
+    },
+    {
+      "id": "P0-04",
+      "phase": "Pre-Start",
+      "task": "Appoint lead contractor and confirm trade split",
+      "owner": "Munya + Dory",
+      "start": "2026-04-14",
+      "finish": "2026-04-17",
+      "status": "Not Started",
+      "progress": 0.0,
+      "critical": true,
+      "notes": "Single point of site control required before mobilisation."
+    },
+    {
+      "id": "P0-06",
+      "phase": "Pre-Start",
+      "task": "Confirm procurement model and approvals route by package",
+      "owner": "Munya + Dory",
+      "start": "2026-04-16",
+      "finish": "2026-04-21",
+      "status": "Not Started",
+      "progress": 0.0,
+      "critical": true,
+      "notes": "Decide owner-supplied versus contractor-supplied items."
+    },
+    {
+      "id": "P0-07",
+      "phase": "Pre-Start",
+      "task": "Finalize aluminium, glazing, and external door schedule",
+      "owner": "Del + Hatitye + Munya",
+      "start": "2026-04-16",
+      "finish": "2026-04-21",
+      "status": "Not Started",
+      "progress": 0.0,
+      "critical": true,
+      "notes": "Needed early because openings still appear incomplete."
+    },
+    {
+      "id": "P0-08",
+      "phase": "Pre-Start",
+      "task": "Finalize joinery responsibility and shop-drawing brief",
+      "owner": "Munya + Dory + Hatitye",
+      "start": "2026-04-16",
+      "finish": "2026-04-21",
+      "status": "Not Started",
+      "progress": 0.0,
+      "critical": true,
+      "notes": "Kitchen and wardrobe package is likely specialist scope."
+    },
+    {
+      "id": "P0-09",
+      "phase": "Pre-Start",
+      "task": "Sign contractor agreements",
+      "owner": "Munya + Dory",
+      "start": "2026-04-22",
+      "finish": "2026-04-25",
+      "status": "Not Started",
+      "progress": 0.0,
+      "critical": true,
+      "notes": "Agreements must reflect scope, payment terms, and deliverables."
+    },
+    {
+      "id": "P0-11",
+      "phase": "Pre-Start",
+      "task": "Place long-lead orders for aluminium and joinery inputs",
+      "owner": "Munya + Del",
+      "start": "2026-04-24",
+      "finish": "2026-04-30",
+      "status": "Not Started",
+      "progress": 0.0,
+      "critical": true,
+      "notes": "Start long-lead procurement before site work opens fully."
+    },
+    {
+      "id": "P0-10",
+      "phase": "Pre-Start",
+      "task": "Release mobilisation payment",
+      "owner": "Dory",
+      "start": "2026-04-28",
+      "finish": "2026-04-29",
+      "status": "Not Started",
+      "progress": 0.0,
+      "critical": true,
+      "notes": "Mobilisation gate before site restart."
+    },
+    {
+      "id": "P1-01",
+      "phase": "Mobilisation",
+      "task": "Formal site start, cleanup, access clearing, and mobilisation",
+      "owner": "Del + Lead Contractor",
+      "start": "2026-05-01",
+      "finish": "2026-05-04",
+      "status": "Not Started",
+      "progress": 0.0,
+      "critical": true,
+      "notes": "Formal site start fixed to 1 May 2026."
+    }
+  ],
+  "blockedTasks": [
+    {
+      "id": "P3-10",
+      "task": "Complete patio and veranda works if confirmed in Phase 1",
+      "owner": "Del + Lead Contractor",
+      "status": "Blocked",
+      "dependency": "P0-03",
+      "notes": "Still depends on the Phase 1 / Phase 2 decision."
+    }
+  ],
+  "gantt": {
+    "startDate": "2026-04-06",
+    "endDate": "2026-08-12",
+    "tasks": [
+      {
+        "row": 1,
+        "id": "P0-01",
+        "task": "Review current-state media and compile condition register",
+        "phase": "Pre-Start",
+        "owner": "Munya + Codex",
+        "start": "2026-04-06",
+        "finish": "2026-04-08",
+        "status": "In Progress",
+        "progress": 0.45,
+        "critical": true
+      },
+      {
+        "row": 2,
+        "id": "P0-02",
+        "task": "Del to run live site audit against Hatitye drawings and current shell",
+        "phase": "Pre-Start",
+        "owner": "Del + Munya",
+        "start": "2026-04-09",
+        "finish": "2026-04-13",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 3,
+        "id": "P0-05",
+        "task": "Consolidate trade budget baseline and quote register",
+        "phase": "Pre-Start",
+        "owner": "Munya + Codex",
+        "start": "2026-04-10",
+        "finish": "2026-04-18",
+        "status": "In Progress",
+        "progress": 0.3,
+        "critical": true
+      },
+      {
+        "row": 4,
+        "id": "P0-03",
+        "task": "Freeze remaining-works scope and variation list",
+        "phase": "Pre-Start",
+        "owner": "Munya + Dory",
+        "start": "2026-04-14",
+        "finish": "2026-04-17",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 5,
+        "id": "P0-04",
+        "task": "Appoint lead contractor and confirm trade split",
+        "phase": "Pre-Start",
+        "owner": "Munya + Dory",
+        "start": "2026-04-14",
+        "finish": "2026-04-17",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 6,
+        "id": "P0-06",
+        "task": "Confirm procurement model and approvals route by package",
+        "phase": "Pre-Start",
+        "owner": "Munya + Dory",
+        "start": "2026-04-16",
+        "finish": "2026-04-21",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 7,
+        "id": "P0-07",
+        "task": "Finalize aluminium, glazing, and external door schedule",
+        "phase": "Pre-Start",
+        "owner": "Del + Hatitye + Munya",
+        "start": "2026-04-16",
+        "finish": "2026-04-21",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 8,
+        "id": "P0-08",
+        "task": "Finalize joinery responsibility and shop-drawing brief",
+        "phase": "Pre-Start",
+        "owner": "Munya + Dory + Hatitye",
+        "start": "2026-04-16",
+        "finish": "2026-04-21",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 9,
+        "id": "P0-09",
+        "task": "Sign contractor agreements",
+        "phase": "Pre-Start",
+        "owner": "Munya + Dory",
+        "start": "2026-04-22",
+        "finish": "2026-04-25",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 10,
+        "id": "P0-11",
+        "task": "Place long-lead orders for aluminium and joinery inputs",
+        "phase": "Pre-Start",
+        "owner": "Munya + Del",
+        "start": "2026-04-24",
+        "finish": "2026-04-30",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 11,
+        "id": "P0-10",
+        "task": "Release mobilisation payment",
+        "phase": "Pre-Start",
+        "owner": "Dory",
+        "start": "2026-04-28",
+        "finish": "2026-04-29",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 12,
+        "id": "P1-01",
+        "task": "Formal site start, cleanup, access clearing, and mobilisation",
+        "phase": "Mobilisation",
+        "owner": "Del + Lead Contractor",
+        "start": "2026-05-01",
+        "finish": "2026-05-04",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 13,
+        "id": "P1-02",
+        "task": "Execute builder corrections, opening changes, day bed and divider works",
+        "phase": "Builder and Envelope",
+        "owner": "Del + Lead Contractor",
+        "start": "2026-05-05",
+        "finish": "2026-05-16",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 14,
+        "id": "P3-02",
+        "task": "Prepare joinery shop drawings and approvals",
+        "phase": "Finishes and Fit-Out",
+        "owner": "Munya + Hatitye + Joinery Supplier",
+        "start": "2026-05-05",
+        "finish": "2026-05-16",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 15,
+        "id": "P3-01",
+        "task": "Procure tiles, sanitaryware, lighting, paint, and final fixtures",
+        "phase": "Finishes and Fit-Out",
+        "owner": "Munya + Dory + Del",
+        "start": "2026-05-05",
+        "finish": "2026-05-20",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 16,
+        "id": "P2-01",
+        "task": "Plumbing audit, rough-in corrections, and drainage works",
+        "phase": "MEP and Ceilings",
+        "owner": "Del + Mukonho",
+        "start": "2026-05-12",
+        "finish": "2026-05-23",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 17,
+        "id": "P2-02",
+        "task": "Electrical and lighting first-fix audit and corrections",
+        "phase": "MEP and Ceilings",
+        "owner": "Del + Masara Electrical",
+        "start": "2026-05-12",
+        "finish": "2026-05-23",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 18,
+        "id": "P1-03",
+        "task": "External render, plaster repairs, and weatherproofing",
+        "phase": "Builder and Envelope",
+        "owner": "Del + Lead Contractor",
+        "start": "2026-05-12",
+        "finish": "2026-05-30",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 19,
+        "id": "P3-03",
+        "task": "Fabricate joinery package",
+        "phase": "Finishes and Fit-Out",
+        "owner": "Joinery Supplier",
+        "start": "2026-05-19",
+        "finish": "2026-06-27",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 20,
+        "id": "P2-03",
+        "task": "Ceiling set-out and bulkhead coordination sign-off",
+        "phase": "MEP and Ceilings",
+        "owner": "Del + Hatitye + Lead Contractor",
+        "start": "2026-05-22",
+        "finish": "2026-05-23",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 21,
+        "id": "P1-04",
+        "task": "Fabricate and install aluminium, glazing, and external doors",
+        "phase": "Builder and Envelope",
+        "owner": "Del + Specialist Contractor",
+        "start": "2026-05-26",
+        "finish": "2026-06-06",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 22,
+        "id": "P2-04",
+        "task": "Ceiling framing and bulkhead construction",
+        "phase": "MEP and Ceilings",
+        "owner": "Del + Ceiling Team",
+        "start": "2026-05-26",
+        "finish": "2026-06-06",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 23,
+        "id": "P2-06",
+        "task": "Internal plaster and skim corrections",
+        "phase": "MEP and Ceilings",
+        "owner": "Del + Lead Contractor",
+        "start": "2026-05-26",
+        "finish": "2026-06-10",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 24,
+        "id": "P2-05",
+        "task": "Ceiling boarding, skimming, and cove preparation",
+        "phase": "MEP and Ceilings",
+        "owner": "Del + Ceiling Team",
+        "start": "2026-06-09",
+        "finish": "2026-06-16",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 25,
+        "id": "P2-07",
+        "task": "Floor screeds and level corrections",
+        "phase": "MEP and Ceilings",
+        "owner": "Del + Lead Contractor",
+        "start": "2026-06-09",
+        "finish": "2026-06-17",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 26,
+        "id": "P3-04",
+        "task": "Install floor and wall finishes",
+        "phase": "Finishes and Fit-Out",
+        "owner": "Del + Lead Contractor / Tiling Team",
+        "start": "2026-06-18",
+        "finish": "2026-07-10",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 27,
+        "id": "P3-05",
+        "task": "Paint preparation, primer, and final coats",
+        "phase": "Finishes and Fit-Out",
+        "owner": "Del + Painter / Lead Contractor",
+        "start": "2026-06-23",
+        "finish": "2026-07-11",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 28,
+        "id": "P3-06",
+        "task": "Install sanitaryware, taps, tubs, and plumbing final fix",
+        "phase": "Finishes and Fit-Out",
+        "owner": "Del + Mukonho",
+        "start": "2026-07-07",
+        "finish": "2026-07-16",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 29,
+        "id": "P3-07",
+        "task": "Install lights, switches, sockets, and complete testing",
+        "phase": "Finishes and Fit-Out",
+        "owner": "Del + Masara Electrical",
+        "start": "2026-07-07",
+        "finish": "2026-07-16",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 30,
+        "id": "P3-08",
+        "task": "Install joinery and fixed furniture",
+        "phase": "Finishes and Fit-Out",
+        "owner": "Del + Joinery Supplier",
+        "start": "2026-07-14",
+        "finish": "2026-07-23",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 31,
+        "id": "P3-10",
+        "task": "Complete patio and veranda works if confirmed in Phase 1",
+        "phase": "Finishes and Fit-Out",
+        "owner": "Del + Lead Contractor",
+        "start": "2026-07-14",
+        "finish": "2026-07-25",
+        "status": "Blocked",
+        "progress": 0.0,
+        "critical": false
+      },
+      {
+        "row": 32,
+        "id": "P3-09",
+        "task": "Kitchen fit-out and appliance coordination",
+        "phase": "Finishes and Fit-Out",
+        "owner": "Del + Joinery Supplier + Munya",
+        "start": "2026-07-20",
+        "finish": "2026-07-25",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 33,
+        "id": "P4-01",
+        "task": "PM snag walk and defect register",
+        "phase": "Closeout",
+        "owner": "Del + Munya + Contractor Team",
+        "start": "2026-07-28",
+        "finish": "2026-07-30",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 34,
+        "id": "P4-02",
+        "task": "Close snags and finish punch-list items",
+        "phase": "Closeout",
+        "owner": "Del + Contractor Team",
+        "start": "2026-07-31",
+        "finish": "2026-08-07",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 35,
+        "id": "P4-03",
+        "task": "Final clean, owner review pack, and closeout file",
+        "phase": "Closeout",
+        "owner": "Del + Munya",
+        "start": "2026-08-10",
+        "finish": "2026-08-11",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      },
+      {
+        "row": 36,
+        "id": "P4-04",
+        "task": "Owner handover milestone",
+        "phase": "Closeout",
+        "owner": "Munya + Dory + Del",
+        "start": "2026-08-12",
+        "finish": "2026-08-12",
+        "status": "Not Started",
+        "progress": 0.0,
+        "critical": true
+      }
+    ]
+  },
+  "budget": {
+    "items": [
+      {
+        "package": "Builder corrections, plastering, screed, skimming, brickwork",
+        "amount": 13891.7,
+        "currency": "USD",
+        "status": "Pending validation",
+        "owner": "Lead Contractor",
+        "notes": "Use as builder-package estimate until signed quote exists."
+      },
+      {
+        "package": "Drainage laying and plumbing",
+        "amount": 6500.0,
+        "currency": "USD",
+        "status": "Quote received",
+        "owner": "Mukonho",
+        "notes": "Materials 4,500 + labour 2,000."
+      },
+      {
+        "package": "Plumbing materials list",
+        "amount": null,
+        "currency": "USD",
+        "status": "Needs clarification",
+        "owner": "Mukonho",
+        "notes": "Do not double-count until linked to plumbing quote."
+      },
+      {
+        "package": "Ceiling BOQ",
+        "amount": 3867.0,
+        "currency": "Unknown",
+        "status": "On hold",
+        "owner": "Ceiling Team",
+        "notes": "Currency prints as AFN in source doc."
+      },
+      {
+        "package": "Electrical and lighting package",
+        "amount": null,
+        "currency": "USD",
+        "status": "Missing quote",
+        "owner": "Masara Electrical",
+        "notes": "Needs full quote aligned to lighting design."
+      },
+      {
+        "package": "Aluminium windows and external doors",
+        "amount": null,
+        "currency": "USD",
+        "status": "Missing quote",
+        "owner": "Lead Contractor / Specialist",
+        "notes": "Likely long-lead and critical."
+      },
+      {
+        "package": "Joinery and furniture package",
+        "amount": null,
+        "currency": "USD",
+        "status": "Missing quote",
+        "owner": "Joinery Supplier",
+        "notes": "Kitchen, wardrobes, shelving, bedroom units."
+      },
+      {
+        "package": "Tiles and floor finishes",
+        "amount": null,
+        "currency": "USD",
+        "status": "Missing quote",
+        "owner": "Supplier / Lead Contractor",
+        "notes": "Material and install strategy still open."
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "id": "D-001",
+      "decision": "Appoint the lead contractor for site control and sequencing.",
+      "requiredBy": "2026-04-08",
+      "owner": "Munya + Dory",
+      "status": "Open",
+      "impact": "Project cannot restart cleanly without a single lead owner."
+    },
+    {
+      "id": "D-002",
+      "decision": "Insert the exact approved budget ceiling into the workbook.",
+      "requiredBy": "2026-04-08",
+      "owner": "Munya",
+      "status": "Open",
+      "impact": "Dashboard remains incomplete without the ceiling figure."
+    },
+    {
+      "id": "D-003",
+      "decision": "Confirm procurement model by package and approval route.",
+      "requiredBy": "2026-04-10",
+      "owner": "Munya + Dory",
+      "status": "Open",
+      "impact": "Delays long-lead items and budget control."
+    },
+    {
+      "id": "D-004",
+      "decision": "Confirm patio and veranda as Phase 1 or Phase 2.",
+      "requiredBy": "2026-04-10",
+      "owner": "Munya + Dory",
+      "status": "Open",
+      "impact": "Affects programme and budget."
+    },
+    {
+      "id": "D-005",
+      "decision": "Confirm who owns kitchen and joinery delivery: builder or specialist.",
+      "requiredBy": "2026-04-10",
+      "owner": "Munya + Dory",
+      "status": "Open",
+      "impact": "Joinery can become the critical path."
+    },
+    {
+      "id": "D-006",
+      "decision": "Confirm Bedroom 4 floor finish against the latest approved design.",
+      "requiredBy": "2026-04-10",
+      "owner": "Munya + Hatitye",
+      "status": "Open",
+      "impact": "Avoids wrong procurement and installation."
+    },
+    {
+      "id": "D-007",
+      "decision": "Confirm ceiling quote currency and quote validity.",
+      "requiredBy": "2026-04-08",
+      "owner": "Munya",
+      "status": "Open",
+      "impact": "Cannot baseline ceiling budget until verified."
+    }
+  ],
+  "roles": [
+    {
+      "name": "Munyaradzi Chipunza",
+      "role": "Project Manager",
+      "location": "Remote - South Africa",
+      "responsibility": "Programme control, commercial decisions, contractor coordination, owner reporting"
+    },
+    {
+      "name": "Dherifah (Del) Chipunza",
+      "role": "On-Site Coordinator",
+      "location": "Harare",
+      "responsibility": "Daily site follow-up, inspections, progress verification, photo/video updates, issue escalation"
+    },
+    {
+      "name": "Dhoria (Dory) Chipunza",
+      "role": "Owner / Client",
+      "location": "USA",
+      "responsibility": "Budget approval, scope approvals, contract/payment approval"
+    },
+    {
+      "name": "Hatitye Mangwiro / Design Yard ZW",
+      "role": "Interior Designer",
+      "location": "Zimbabwe",
+      "responsibility": "Design clarifications, drawings, finish intent, joinery and ceiling coordination"
+    },
+    {
+      "name": "C&M Chuma Construction",
+      "role": "Lead Contractor (recommended)",
+      "location": "Zimbabwe",
+      "responsibility": "Builder corrections, site sequencing, trade coordination, quality closeout"
+    },
+    {
+      "name": "Mukonho",
+      "role": "Plumbing Trade",
+      "location": "Zimbabwe",
+      "responsibility": "Drainage, rough-ins, final plumbing fix"
+    },
+    {
+      "name": "Masara Electrical",
+      "role": "Electrical Trade",
+      "location": "Zimbabwe",
+      "responsibility": "Electrical rough-in corrections, lighting integration, testing"
+    }
+  ]
+}
