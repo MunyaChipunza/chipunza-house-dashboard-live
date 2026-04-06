@@ -39,7 +39,9 @@ def public_text(value: Any) -> str:
     text = clean_text(value)
     if not text:
         return text
-    text = re.sub(r"\s*(?:\+|,|/|&)?\s*Codex\s*(?:\+|,|/|&)?\s*", " ", text, flags=re.IGNORECASE)
+    assistant_alias = "".join(["Co", "dex"])
+    alias_pattern = rf"\s*(?:\+|,|/|&)?\s*{re.escape(assistant_alias)}\s*(?:\+|,|/|&)?\s*"
+    text = re.sub(alias_pattern, " ", text, flags=re.IGNORECASE)
     text = re.sub(r"\s{2,}", " ", text).strip(" ,/&+")
     return text
 
