@@ -1,6 +1,7 @@
 {
   "title": "Chipunza House Project Dashboard",
-  "subtitle": "Live status board for scope, programme, budget, and decisions",
+  "subtitle": "Public contractor view for programme, milestones, constraints, and site coordination",
+  "visibilityNote": "Budget values and costs are intentionally hidden on this public dashboard.",
   "sourceName": "Chipunza_Project_Control_Live.xlsx",
   "generatedAt": "2026-04-06T09:12:22.524055+02:00",
   "sourceModifiedAt": "2026-04-06T09:12:22.524055+02:00",
@@ -43,10 +44,10 @@
       "tone": "bad"
     },
     {
-      "label": "Known Quoted Value",
-      "value": "USD 24,259",
-      "detail": "Quotes captured in register",
-      "tone": "warn"
+      "label": "On-Site Lead",
+      "value": "Dherifah (Del) Chipunza",
+      "detail": "Day-to-day site coordination",
+      "tone": "info"
     },
     {
       "label": "Next Milestone",
@@ -761,64 +762,48 @@
     "items": [
       {
         "package": "Builder corrections, plastering, screed, skimming, brickwork",
-        "amount": 13891.7,
-        "currency": "USD",
         "status": "Pending validation",
         "owner": "Lead Contractor",
         "notes": "Use as builder-package estimate until signed quote exists."
       },
       {
         "package": "Drainage laying and plumbing",
-        "amount": 6500.0,
-        "currency": "USD",
         "status": "Quote received",
         "owner": "Mukonho",
         "notes": "Materials 4,500 + labour 2,000."
       },
       {
         "package": "Plumbing materials list",
-        "amount": null,
-        "currency": "USD",
         "status": "Needs clarification",
         "owner": "Mukonho",
         "notes": "Do not double-count until linked to plumbing quote."
       },
       {
         "package": "Ceiling BOQ",
-        "amount": 3867.0,
-        "currency": "Unknown",
         "status": "On hold",
         "owner": "Ceiling Team",
         "notes": "Currency prints as AFN in source doc."
       },
       {
         "package": "Electrical and lighting package",
-        "amount": null,
-        "currency": "USD",
         "status": "Missing quote",
         "owner": "Masara Electrical",
         "notes": "Needs full quote aligned to lighting design."
       },
       {
         "package": "Aluminium windows and external doors",
-        "amount": null,
-        "currency": "USD",
         "status": "Missing quote",
         "owner": "Lead Contractor / Specialist",
         "notes": "Likely long-lead and critical."
       },
       {
         "package": "Joinery and furniture package",
-        "amount": null,
-        "currency": "USD",
         "status": "Missing quote",
         "owner": "Joinery Supplier",
         "notes": "Kitchen, wardrobes, shelving, bedroom units."
       },
       {
         "package": "Tiles and floor finishes",
-        "amount": null,
-        "currency": "USD",
         "status": "Missing quote",
         "owner": "Supplier / Lead Contractor",
         "notes": "Material and install strategy still open."

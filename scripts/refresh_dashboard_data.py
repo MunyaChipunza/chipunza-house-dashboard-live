@@ -149,14 +149,13 @@ def create_snapshot(source_path: Path) -> Path:
     return source_path
 
 
-def build_summary(tasks: list[dict[str, Any]], decisions: list[dict[str, Any]], budgets: list[dict[str, Any]], milestones: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def build_summary(tasks: list[dict[str, Any]], decisions: list[dict[str, Any]], milestones: list[dict[str, Any]], roles: list[dict[str, Any]]) -> list[dict[str, Any]]:
     progress_values = [parse_float(row.get("Percent_Complete")) for row in tasks]
     progress_values = [value for value in progress_values if value is not None]
     avg_progress = statistics.fmean(progress_values) if progress_values else 0.0
     blocked_count = sum(1 for row in tasks if clean_text(row.get("Status")) == "Blocked")
     in_progress_count = sum(1 for row in tasks if clean_text(row.get("Status")) == "In Progress")
     open_decisions = sum(1 for row in decisions if clean_text(row.get("Status")) == "Open")
-    quoted_total = sum(parse_float(row.get("Amount")) or 0 for row in budgets if parse_float(row.get("Amount")) is not None)
     next_milestone = None
     dated = []
     today = dt.date.today()
@@ -170,6 +169,7 @@ def build_summary(tasks: list[dict[str, Any]], decisions: list[dict[str, Any]], 
 
     site_start = next((m for m in milestones if clean_text(m.get("label")) == "Formal site start"), None)
     handover = next((m for m in milestones if clean_text(m.get("label")) == "Owner handover"), None)
+    onsite_lead = next((r for r in roles if "On-Site" in clean_text(r.get("Role")) or "Dherifah" in clean_text(r.get("Name"))), None)
 
     return [
         {"label": "Site Start", "value": fmt_date_label(site_start.get("date")) if site_start else "01-May-2026", "detail": "Formal site mobilisation", "tone": "info"},
@@ -178,7 +178,7 @@ def build_summary(tasks: list[dict[str, Any]], decisions: list[dict[str, Any]], 
         {"label": "In Progress", "value": str(in_progress_count), "detail": "Active work items", "tone": "info"},
         {"label": "Blocked Tasks", "value": str(blocked_count), "detail": "Immediate constraints", "tone": "bad" if blocked_count else "good"},
         {"label": "Open Decisions", "value": str(open_decisions), "detail": "Still awaiting closure", "tone": "bad" if open_decisions > 3 else "warn" if open_decisions else "good"},
-        {"label": "Known Quoted Value", "value": f"USD {quoted_total:,.0f}", "detail": "Quotes captured in register", "tone": "warn"},
+        {"label": "On-Site Lead", "value": clean_text(onsite_lead.get("Name")) if onsite_lead else "Del", "detail": "Day-to-day site coordination", "tone": "info"},
         {"label": "Next Milestone", "value": clean_text(next_milestone.get("label")) if next_milestone else "-", "detail": fmt_date_label(next_milestone.get("date")) if next_milestone else "No future milestone set", "tone": "info"},
     ]
 
@@ -316,12 +316,13 @@ def build_payload(workbook_path: Path, workbook) -> dict[str, Any]:
 
     return {
         "title": "Chipunza House Project Dashboard",
-        "subtitle": "Live status board for scope, programme, budget, and decisions",
+        "subtitle": "Public contractor view for programme, milestones, constraints, and site coordination",
+        "visibilityNote": "Budget values and costs are intentionally hidden on this public dashboard.",
         "sourceName": workbook_path.name,
         "generatedAt": generated,
         "sourceModifiedAt": source_modified,
         "refreshSeconds": 60,
-        "summaryCards": build_summary(tasks, decisions, budgets, milestones),
+        "summaryCards": build_summary(tasks, decisions, milestones, roles),
         "phaseProgress": build_phase_progress(tasks),
         "milestones": milestones,
         "upcomingTasks": build_upcoming_tasks(tasks),
@@ -331,8 +332,6 @@ def build_payload(workbook_path: Path, workbook) -> dict[str, Any]:
             "items": [
                 {
                     "package": clean_text(row.get("Package")),
-                    "amount": parse_float(row.get("Amount")),
-                    "currency": clean_text(row.get("Currency")) or "USD",
                     "status": clean_text(row.get("Status")),
                     "owner": clean_text(row.get("Owner")),
                     "notes": clean_text(row.get("Notes")),

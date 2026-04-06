@@ -19,6 +19,7 @@ header:after{content:"";position:absolute;right:-80px;top:-70px;width:280px;heig
 .title{font:50px/1 'Bebas Neue',sans-serif;letter-spacing:2px}
 .title span{color:var(--cyan)}
 .subtitle{margin-top:8px;color:#dbe8ed;max-width:720px}
+.privacy-note{margin-top:12px;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,203,112,.28);background:rgba(255,203,112,.10);font:11px 'DM Mono',monospace;color:#ffe0a8}
 .head-side{display:flex;flex-direction:column;align-items:flex-end;gap:12px;position:relative;z-index:1}
 .status{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid rgba(103,243,182,.44);background:rgba(103,243,182,.12);font:600 11px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:1px}
 .status.warn{border-color:rgba(255,203,112,.55);background:rgba(255,203,112,.12);color:var(--amber)}
@@ -91,7 +92,8 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
     <div>
       <div class="eyebrow">Live Project Dashboard</div>
       <div class="title">Chipunza House <span>Project</span></div>
-      <p class="subtitle">Public live board for programme, milestones, budget, constraints, and site coordination. Workbook-driven and designed to follow the same hosted logic as your other dashboards.</p>
+      <p class="subtitle" id="subtitle">Public contractor view for programme, milestones, constraints, and site coordination.</p>
+      <div class="privacy-note" id="visibilityNote">Public view. Budget values are hidden.</div>
     </div>
     <div class="head-side">
       <div class="status" id="statusBadge"><span class="dot"></span><span id="statusText">Loading</span></div>
@@ -147,7 +149,7 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 
   <section class="section split">
     <div class="table-shell">
-      <div class="label">Budget Register</div>
+      <div class="label">Procurement Status</div>
       <div class="table-wrap"><table id="budgetTable"></table></div>
     </div>
     <div class="table-shell">
@@ -173,7 +175,6 @@ let countdownValue = 60;
 function esc(v){return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
 function fmtDate(v){if(!v) return '-'; try{return new Intl.DateTimeFormat('en-ZA',{day:'2-digit',month:'short',year:'numeric',timeZone:'Africa/Johannesburg'}).format(new Date(v))}catch{return v}}
 function fmtDateTime(v){if(!v) return '-'; try{return new Intl.DateTimeFormat('en-ZA',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:'Africa/Johannesburg'}).format(new Date(v))}catch{return v}}
-function fmtMoney(v, currency='USD'){if(v === null || v === undefined || v === '') return '-'; return `${currency} ${Number(v).toLocaleString('en-ZA',{maximumFractionDigits:0})}`}
 function fmtPct(v){if(v === null || v === undefined || v === '') return '-'; return `${(Number(v)*100).toFixed(0)}%`}
 function toneClass(t){return ['good','warn','bad','info'].includes(t) ? t : 'info'}
 function statusTone(status){const s = String(status || '').toLowerCase(); if(s === 'complete') return 'good'; if(s === 'in progress') return 'info'; if(s === 'blocked' || s === 'at risk') return 'bad'; return 'warn'}
@@ -272,9 +273,9 @@ function renderTable(tableId, headers, rows){
 function renderBudget(){
   renderTable('budgetTable', [
     { label:'Package', render:r => esc(r.package) },
-    { label:'Amount', render:r => fmtMoney(r.amount, r.currency), mono:true },
     { label:'Status', render:r => esc(r.status) },
-    { label:'Owner', render:r => esc(r.owner) }
+    { label:'Owner', render:r => esc(r.owner) },
+    { label:'Notes', render:r => esc(r.notes) }
   ], dashboard?.budget?.items || []);
 }
 
@@ -360,6 +361,8 @@ function renderMeta(){
   document.getElementById('sourceName').textContent = dashboard?.sourceName || 'Unknown';
   document.getElementById('generatedAt').textContent = fmtDateTime(dashboard?.generatedAt);
   document.getElementById('sourceUpdated').textContent = fmtDateTime(dashboard?.sourceModifiedAt);
+  document.getElementById('subtitle').textContent = dashboard?.subtitle || 'Public contractor view for programme, milestones, constraints, and site coordination.';
+  document.getElementById('visibilityNote').textContent = dashboard?.visibilityNote || 'Public view. Budget values are hidden.';
 }
 
 async function refreshData(manual){
