@@ -35,6 +35,25 @@ try {
 
     foreach ($openWorkbook in $excel.Workbooks) {
         if ($openWorkbook.FullName -eq $sourceResolved) {
+            $useDiskCopy = $false
+            try {
+                $diskWrite = (Get-Item -LiteralPath $sourceResolved).LastWriteTimeUtc
+                $lastSave = $openWorkbook.BuiltinDocumentProperties("Last Save Time").Value
+                if ($lastSave -is [datetime]) {
+                    $workbookSaveUtc = $lastSave.ToUniversalTime()
+                    if ($diskWrite -gt $workbookSaveUtc.AddSeconds(2)) {
+                        $useDiskCopy = $true
+                    }
+                }
+            }
+            catch {
+            }
+
+            if ($useDiskCopy) {
+                Copy-Item -LiteralPath $sourceResolved -Destination $TargetPath -Force
+                return
+            }
+
             $openWorkbook.SaveCopyAs($TargetPath)
             return
         }

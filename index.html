@@ -114,7 +114,7 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 
   <section class="section split">
     <div class="surface">
-      <div class="label">Phase Progress</div>
+      <div class="label">Stage Progress</div>
       <div class="phase-list" id="phaseProgress"></div>
     </div>
     <div class="surface">
@@ -223,7 +223,7 @@ function renderSummary(){
 function renderPhaseProgress(){
   const host = document.getElementById('phaseProgress');
   const items = dashboard?.phaseProgress || [];
-  if(!items.length){ host.innerHTML = '<div class="empty">No phase data available.</div>'; return; }
+  if(!items.length){ host.innerHTML = '<div class="empty">No stage data available.</div>'; return; }
   host.innerHTML = items.map(item => `
     <div class="phase-item">
       <div class="phase-row">
