@@ -3,7 +3,9 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
 import statistics
+import subprocess
 import tempfile
 import urllib.request
 from pathlib import Path
@@ -17,6 +19,7 @@ BUNDLE_DIR = SCRIPT_DIR.parent
 DEFAULT_WORKBOOK = (BUNDLE_DIR.parent / "03_Deliverables" / "Chipunza_Project_Control_Live.xlsx").resolve()
 DEFAULT_OUTPUT = (BUNDLE_DIR / "dashboard_data.json").resolve()
 TIMEZONE = dt.timezone(dt.timedelta(hours=2), name="SAST")
+CREATE_NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 
 
 def parse_args() -> argparse.Namespace:
@@ -101,10 +104,12 @@ def load_workbook_from_source(workbook: str | None, workbook_url: str | None) ->
         path = Path(workbook).expanduser().resolve()
         if not path.exists():
             raise FileNotFoundError(f"Workbook not found: {path}")
-        return path, load_workbook(path, data_only=False)
+        snapshot = create_snapshot(path)
+        return snapshot, load_workbook(snapshot, data_only=False)
 
     if DEFAULT_WORKBOOK.exists():
-        return DEFAULT_WORKBOOK, load_workbook(DEFAULT_WORKBOOK, data_only=False)
+        snapshot = create_snapshot(DEFAULT_WORKBOOK)
+        return snapshot, load_workbook(snapshot, data_only=False)
 
     if workbook_url:
         with urllib.request.urlopen(workbook_url) as response:  # noqa: S310
@@ -115,6 +120,33 @@ def load_workbook_from_source(workbook: str | None, workbook_url: str | None) ->
         return temp_path, load_workbook(temp_path, data_only=False)
 
     raise FileNotFoundError("No workbook found. Provide --workbook or store the workbook in ../03_Deliverables.")
+
+
+def create_snapshot(source_path: Path) -> Path:
+    if os.name != "nt":
+        return source_path
+
+    helper = SCRIPT_DIR / "save_excel_snapshot.ps1"
+    temp_dir = Path(tempfile.mkdtemp(prefix="chipunza_workbook_"))
+    target = temp_dir / source_path.name
+    command = [
+        "powershell",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        str(helper),
+        "-SourcePath",
+        str(source_path),
+        "-TargetPath",
+        str(target),
+    ]
+    startupinfo = subprocess.STARTUPINFO()
+    startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+    startupinfo.wShowWindow = 0
+    result = subprocess.run(command, text=True, capture_output=True, creationflags=CREATE_NO_WINDOW, startupinfo=startupinfo)
+    if result.returncode == 0 and target.exists():
+        return target
+    return source_path
 
 
 def build_summary(tasks: list[dict[str, Any]], decisions: list[dict[str, Any]], budgets: list[dict[str, Any]], milestones: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -280,7 +312,7 @@ def build_payload(workbook_path: Path, workbook) -> dict[str, Any]:
     milestones = build_milestone_payload(milestone_rows, tasks)
 
     source_modified = dt.datetime.fromtimestamp(workbook_path.stat().st_mtime, tz=TIMEZONE).isoformat() if workbook_path.exists() else None
-    generated = dt.datetime.now(tz=TIMEZONE).isoformat()
+    generated = source_modified
 
     return {
         "title": "Chipunza House Project Dashboard",
