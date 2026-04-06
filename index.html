@@ -19,7 +19,6 @@ header:after{content:"";position:absolute;right:-80px;top:-70px;width:280px;heig
 .title{font:50px/1 'Bebas Neue',sans-serif;letter-spacing:2px}
 .title span{color:var(--cyan)}
 .subtitle{margin-top:8px;color:#dbe8ed;max-width:720px}
-.privacy-note{margin-top:12px;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,203,112,.28);background:rgba(255,203,112,.10);font:11px 'DM Mono',monospace;color:#ffe0a8}
 .head-side{display:flex;flex-direction:column;align-items:flex-end;gap:12px;position:relative;z-index:1}
 .status{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid rgba(103,243,182,.44);background:rgba(103,243,182,.12);font:600 11px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:1px}
 .status.warn{border-color:rgba(255,203,112,.55);background:rgba(255,203,112,.12);color:var(--amber)}
@@ -93,7 +92,6 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
       <div class="eyebrow">Live Project Dashboard</div>
       <div class="title">Chipunza House <span>Project</span></div>
       <p class="subtitle" id="subtitle">Public contractor view for programme, milestones, constraints, and site coordination.</p>
-      <div class="privacy-note" id="visibilityNote">Public view. Budget values are hidden.</div>
     </div>
     <div class="head-side">
       <div class="status" id="statusBadge"><span class="dot"></span><span id="statusText">Loading</span></div>
@@ -362,7 +360,6 @@ function renderMeta(){
   document.getElementById('generatedAt').textContent = fmtDateTime(dashboard?.generatedAt);
   document.getElementById('sourceUpdated').textContent = fmtDateTime(dashboard?.sourceModifiedAt);
   document.getElementById('subtitle').textContent = dashboard?.subtitle || 'Public contractor view for programme, milestones, constraints, and site coordination.';
-  document.getElementById('visibilityNote').textContent = dashboard?.visibilityNote || 'Public view. Budget values are hidden.';
 }
 
 async function refreshData(manual){

@@ -4,6 +4,7 @@ import argparse
 import datetime as dt
 import json
 import os
+import re
 import statistics
 import subprocess
 import tempfile
@@ -32,6 +33,15 @@ def parse_args() -> argparse.Namespace:
 
 def clean_text(value: Any) -> str:
     return "" if value is None else str(value).strip()
+
+
+def public_text(value: Any) -> str:
+    text = clean_text(value)
+    if not text:
+        return text
+    text = re.sub(r"\s*(?:\+|,|/|&)?\s*Codex\s*(?:\+|,|/|&)?\s*", " ", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s{2,}", " ", text).strip(" ,/&+")
+    return text
 
 
 def parse_float(value: Any) -> float | None:
@@ -178,8 +188,8 @@ def build_summary(tasks: list[dict[str, Any]], decisions: list[dict[str, Any]], 
         {"label": "In Progress", "value": str(in_progress_count), "detail": "Active work items", "tone": "info"},
         {"label": "Blocked Tasks", "value": str(blocked_count), "detail": "Immediate constraints", "tone": "bad" if blocked_count else "good"},
         {"label": "Open Decisions", "value": str(open_decisions), "detail": "Still awaiting closure", "tone": "bad" if open_decisions > 3 else "warn" if open_decisions else "good"},
-        {"label": "On-Site Lead", "value": clean_text(onsite_lead.get("Name")) if onsite_lead else "Del", "detail": "Day-to-day site coordination", "tone": "info"},
-        {"label": "Next Milestone", "value": clean_text(next_milestone.get("label")) if next_milestone else "-", "detail": fmt_date_label(next_milestone.get("date")) if next_milestone else "No future milestone set", "tone": "info"},
+        {"label": "On-Site Lead", "value": public_text(onsite_lead.get("Name")) if onsite_lead else "Del", "detail": "Day-to-day site coordination", "tone": "info"},
+        {"label": "Next Milestone", "value": public_text(next_milestone.get("label")) if next_milestone else "-", "detail": fmt_date_label(next_milestone.get("date")) if next_milestone else "No future milestone set", "tone": "info"},
     ]
 
 
@@ -197,7 +207,7 @@ def build_phase_progress(tasks: list[dict[str, Any]]) -> list[dict[str, Any]]:
         average = statistics.fmean(progress) if progress else 0.0
         results.append(
             {
-                "phase": phase,
+                "phase": public_text(phase),
                 "progress": average,
                 "completed": completed,
                 "total": len(rows),
@@ -220,15 +230,15 @@ def build_upcoming_tasks(tasks: list[dict[str, Any]]) -> list[dict[str, Any]]:
         results.append(
             {
                 "id": clean_text(row.get("Task_ID")),
-                "phase": clean_text(row.get("Phase")),
-                "task": clean_text(row.get("Task")),
-                "owner": clean_text(row.get("Owner")),
+                "phase": public_text(row.get("Phase")),
+                "task": public_text(row.get("Task")),
+                "owner": public_text(row.get("Owner")),
                 "start": iso_date(parse_date(row.get("Start_Date"))),
                 "finish": iso_date(parse_date(row.get("Finish_Date"))),
-                "status": clean_text(row.get("Status")),
+                "status": public_text(row.get("Status")),
                 "progress": parse_float(row.get("Percent_Complete")) or 0.0,
                 "critical": clean_text(row.get("Critical")) == "Yes",
-                "notes": clean_text(row.get("Notes")),
+                "notes": public_text(row.get("Notes")),
             }
         )
     return results
@@ -241,11 +251,11 @@ def build_blocked_tasks(tasks: list[dict[str, Any]]) -> list[dict[str, Any]]:
             blocked.append(
                 {
                     "id": clean_text(row.get("Task_ID")),
-                    "task": clean_text(row.get("Task")),
-                    "owner": clean_text(row.get("Owner")),
-                    "status": clean_text(row.get("Status")),
-                    "dependency": clean_text(row.get("Dependency")),
-                    "notes": clean_text(row.get("Notes")),
+                    "task": public_text(row.get("Task")),
+                    "owner": public_text(row.get("Owner")),
+                    "status": public_text(row.get("Status")),
+                    "dependency": public_text(row.get("Dependency")),
+                    "notes": public_text(row.get("Notes")),
                 }
             )
     return blocked
@@ -269,12 +279,12 @@ def build_gantt(tasks: list[dict[str, Any]]) -> dict[str, Any]:
             {
                 "row": index + 1,
                 "id": clean_text(row.get("Task_ID")),
-                "task": clean_text(row.get("Task")),
-                "phase": clean_text(row.get("Phase")),
-                "owner": clean_text(row.get("Owner")),
+                "task": public_text(row.get("Task")),
+                "phase": public_text(row.get("Phase")),
+                "owner": public_text(row.get("Owner")),
                 "start": iso_date(start),
                 "finish": iso_date(finish),
-                "status": clean_text(row.get("Status")),
+                "status": public_text(row.get("Status")),
                 "progress": parse_float(row.get("Percent_Complete")) or 0.0,
                 "critical": clean_text(row.get("Critical")) == "Yes",
             }
@@ -293,11 +303,11 @@ def build_milestone_payload(milestones: list[dict[str, Any]], tasks: list[dict[s
             target_date = parse_date(source.get("Start_Date")) or target_date
         results.append(
             {
-                "label": clean_text(row.get("Milestone")),
+                "label": public_text(row.get("Milestone")),
                 "date": iso_date(target_date),
-                "status": clean_text(source.get("Status")),
-                "owner": clean_text(source.get("Owner")),
-                "notes": clean_text(row.get("Notes")),
+                "status": public_text(source.get("Status")),
+                "owner": public_text(source.get("Owner")),
+                "notes": public_text(row.get("Notes")),
             }
         )
     return results
@@ -317,7 +327,6 @@ def build_payload(workbook_path: Path, workbook) -> dict[str, Any]:
     return {
         "title": "Chipunza House Project Dashboard",
         "subtitle": "Public contractor view for programme, milestones, constraints, and site coordination",
-        "visibilityNote": "Budget values and costs are intentionally hidden on this public dashboard.",
         "sourceName": workbook_path.name,
         "generatedAt": generated,
         "sourceModifiedAt": source_modified,
@@ -331,10 +340,10 @@ def build_payload(workbook_path: Path, workbook) -> dict[str, Any]:
         "budget": {
             "items": [
                 {
-                    "package": clean_text(row.get("Package")),
-                    "status": clean_text(row.get("Status")),
-                    "owner": clean_text(row.get("Owner")),
-                    "notes": clean_text(row.get("Notes")),
+                    "package": public_text(row.get("Package")),
+                    "status": public_text(row.get("Status")),
+                    "owner": public_text(row.get("Owner")),
+                    "notes": public_text(row.get("Notes")),
                 }
                 for row in budgets
             ]
@@ -342,20 +351,20 @@ def build_payload(workbook_path: Path, workbook) -> dict[str, Any]:
         "decisions": [
             {
                 "id": clean_text(row.get("Decision_ID")),
-                "decision": clean_text(row.get("Decision")),
+                "decision": public_text(row.get("Decision")),
                 "requiredBy": iso_date(parse_date(row.get("Required_By"))),
-                "owner": clean_text(row.get("Owner")),
-                "status": clean_text(row.get("Status")),
-                "impact": clean_text(row.get("Impact")),
+                "owner": public_text(row.get("Owner")),
+                "status": public_text(row.get("Status")),
+                "impact": public_text(row.get("Impact")),
             }
             for row in decisions
         ],
         "roles": [
             {
-                "name": clean_text(row.get("Name")),
-                "role": clean_text(row.get("Role")),
-                "location": clean_text(row.get("Location")),
-                "responsibility": clean_text(row.get("Primary Responsibility")),
+                "name": public_text(row.get("Name")),
+                "role": public_text(row.get("Role")),
+                "location": public_text(row.get("Location")),
+                "responsibility": public_text(row.get("Primary Responsibility")),
             }
             for row in roles
         ],
