@@ -105,11 +105,11 @@ def load_workbook_from_source(workbook: str | None, workbook_url: str | None) ->
         if not path.exists():
             raise FileNotFoundError(f"Workbook not found: {path}")
         snapshot = create_snapshot(path)
-        return snapshot, load_workbook(snapshot, data_only=False)
+        return path, load_workbook(snapshot, data_only=False)
 
     if DEFAULT_WORKBOOK.exists():
         snapshot = create_snapshot(DEFAULT_WORKBOOK)
-        return snapshot, load_workbook(snapshot, data_only=False)
+        return DEFAULT_WORKBOOK, load_workbook(snapshot, data_only=False)
 
     if workbook_url:
         with urllib.request.urlopen(workbook_url) as response:  # noqa: S310
